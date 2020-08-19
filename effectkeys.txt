@@ -1,0 +1,116 @@
+# Effect key list (just the last 8 bits, ie remove 0xcf00)
+# $Id: effectkeys.txt 1109 2009-03-03 13:40:04Z os $
+#
+# Format:
+#   <key> <number of values>
+#
+# TODO:
+#   Figure out all unknown values (??)
+#   Document existing values better
+#
+
+0x0a   4         # AO: Random modify [attribute, min, max, ac]
+0x0b   5         # ??: SL: unknown, shadowlands, unsure of size or purpose
+0x14   3         # AO: set attribute [attribute, value]
+0x16   5         # AO: temporary skill modify [skill, modifier, ?, ?, time]
+0x18   4         # AO: teleport [x,y,z,playfield]
+0x1b   0         # AO: upload nano [id] (we cheat here (count=0), the value is gotten by pre-effect check)
+0x21   3         # ??: SL: unknown, unsure of size or purpose
+0x22   3         # AO: set value [?, key, value]
+0x24   3         # AO: add skill [value, key]
+0x26   7         # AO: some graphics effect crap, 7 bytes maybe
+0x28   4         # AO: save character.. unknown values (4?)
+0x29   3         # AO: lock skill ?, key, value
+0x2b   2         # AO: headmesh, unknown, meshid
+0x2d   2         # AO: backmesh, unknown, meshid
+0x2e   2         # ??: unknown, 2 bytes likely
+0x2f   3         # AO: texture, texid, slot?, unknown
+0x34   0         # AO: text (chat) length, text
+0x35   2         # AO: modify skill, key, value
+0x3b   1         # AO: execute nano (self?), id
+0x3e   0         # AO: text (unknown) length, text
+0x3f   2         # AO: attractor mesh
+0x41   0         # AO: text (floating) length, text
+0x44   2         # AO: change shape, ? ?
+0x47  10         # AO: summon mob, ? ? ? ?
+0x48   8         # AO: summon item, ? ? ? ?
+0x49   4         # ??: unknown, 4 bytes
+0x4a   1         # AO: execute nano (team?), id
+0x4b   2         # AO: change status
+0x4c   2         # AO: restrict, ? ?
+0x4d   0         # AO: next head model
+0x4e   0         # AO: previous head model
+0x51   5         # AO: area effect, key, min, max, type, range
+0x53   4         # ??: unknown, 4 bytes most likely
+0x54   4         # ??: unknown, 4 bytes
+0x56   1         # ??: SL: unknown, unsure of size or purpose
+0x57   3         # AO: change vision, ? ? ?
+0x5a   6         # ??: SL: unknown, unsure of size or purpose
+0x5b   7         # AO: teleport, ? playfield ? ? ?
+0x5e   0         # AO: refresh model
+0x5f   2         # AO: area nano, id, range
+0x61   2         # AO: cast nano, id, chance to cast
+0x64   0         # AO: open bank
+0x6c   1         # AO: equip monster weapon, 4byteid
+0x71   3         # AO: remove nanos under x ncu [ncumax, school, count]
+0x73   1         # AO: script [id]
+0x75   0         # AO: Create OR enter apartment
+0x76   2         # AO: set value key, value
+0x7b   0         # AO: text (unknown) length, text
+0x7d   5         # AO: taunt, 0,0,taunt value
+0x7e   0         # AO: pacify
+0x81   0         # AO: fear
+0x82   0         # ??: unknown, zero.. in 12.80 nano data
+0x84   9         # AO: random spawn item, [chance, id, ql] 9 bytes likely
+0x86   0         # AO: wipe hate list
+0x87   0         # AO: charm
+0x88   0         # AO: daze, zero arguments, only in 'daze spell test'
+0x8a   0         # AO: Destroy item
+0x8c   0         # AO: text (dual) len, text, len, text
+0x8d   1         # AO: Organization type .. 1 byte MAYBE
+0x8e   0         # AO: text (??) 0, len, text
+0x91   1         # AO: Create OR enter apartment .. 1 byte MAYBE
+0x92   0         # AO: zero content, enable flight
+0x93   2         # AO: Set flag, attribute, bit
+0x94   2         # AO: Enable feature.. name change gate has it
+0x96   4         # ??: unknown, could be 4 bytes, or less.. at least 2. present in 11.00 data
+0x98   0         # AO: warp to last save
+0xa1   0         # ??: unknown
+0xa2   0         # AO: summon selected player
+0xa3   0         # AO: summon team members
+0xaa   2         # AO: Resistance to nano [strain, percentage]
+0xac   0         # SL: Save character
+0xae   0         # ??: unknown, 0, only name giver has it
+0xaf  16         # AO: Spawn pet, 4byteid, ?, ?
+0xb5   0         # ??: unknown, zero content
+0xb7   2         # NW: Org advantage
+0xb9   2         # AO: Reduce nano strain length, strain, seconds
+0xba   0         # NW: Shield disabler, notum wars shite, zero content
+0xbd   1         # AO: Warp pets to user
+0xbe   4         # SL: Add action
+0xc0   2         # SL: Modify attribute by percentage
+0xc1   5         # SL: "Drain hit", attribute, minimum, maximum, armor-attribute, recover %
+0xc3   3         # SL: Lock perk
+0xc9   2         # ??: SL: unknown
+0xcc   4         # SL: "Special hit", attribute, minimum, maximum, armor-attribute
+0xd4  13         # ??: SL: unknown
+0xd6   1         # ??: SL: unknown
+0xd8   0         # SL: Set anchor
+0xd9   0         # SL: Recall to anchor
+0xda   0         # ??: SL: 15.0.6-ep1 text
+0xdd   8         # LE: unknown (nano 17.9)
+0xc8  11         # AI: unknown
+0xe4   9         # AI: unknown
+0xe5   0         # AI/15.8: text - X X X UINT32STR
+0xe6   4         # LE: unknown, possibly set value (similar to 0x22)
+0xe7   4         # LE: unknown, possibly set value (similar to 0x22)
+0xe8   2         # LE: unknown
+0xeb   2         # LE: unknown (17.2)
+0xea   3         # LE: spawn quest (17.5): quest, x, x
+0xed   1         # LE: solve quest (17.5): quest
+0xec   1         # LE: playfield nano: nanoid
+# 0xee changed from 2 bytes to 3 bytes in 18.0.0
+0xee   3         # LE: unknown (item 17.9)
+0xef   0         # LE: unknown (item 17.10)
+0xf0   0         # ??: unknown (nano 18.0)
+0xf4   1         # ??: unknown (nano 18.0)

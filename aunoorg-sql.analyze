@@ -1,0 +1,21 @@
+-- $Id: aunoorg-sql.analyze 1096 2008-08-20 10:53:25Z os $
+
+BEGIN;
+TRUNCATE aodb_patch;
+INSERT INTO aodb_patch
+  SELECT DISTINCT ON (patch)
+    patch,
+    substring(patch::text, 1, 2)::integer || '.' ||
+    substring(patch::text, 3, 2)::integer ||
+    CASE WHEN (substring(patch::text, 5, 2)::integer = 0 and substring(patch::text, 7, 2)::integer = 0)
+         THEN ''
+         ELSE '.' || substring(patch::text, 5, 2)::integer
+    END ||
+    CASE WHEN (substring(patch::text, 7, 2)::integer = 0)
+         THEN ''
+         ELSE '.' || substring(patch::text, 7, 2)::integer
+    END
+  FROM aodb
+  WHERE current;
+ANALYZE aodb_patch;
+COMMIT;

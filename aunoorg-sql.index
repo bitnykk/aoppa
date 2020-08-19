@@ -1,0 +1,18 @@
+-- $Id: aunoorg-sql.index 850 2008-02-12 19:05:23Z os $
+--
+
+CREATE UNIQUE INDEX aodb_aoid_ptc_idx ON aodb (aoid, patch);
+CREATE INDEX aodb_metatype_idx  ON aodb (metatype) WHERE current;
+CREATE INDEX aodb_name_idx      ON aodb (name, ql, aoid) WHERE current;
+
+CREATE INDEX aodb_eff_xid_idx   ON aodb_eff  (xid);
+CREATE INDEX aodb_eff_type_idx  ON aodb_eff  (type);
+CREATE INDEX aodb_eff_val1_idx  ON aodb_eff  (value1);
+
+CREATE INDEX aodb_req_id_idx    ON aodb_req  (xid, reqid);
+CREATE INDEX aodb_req_av_idx    ON aodb_req  (attribute, value);
+
+CREATE INDEX aodb_other_xid_idx ON aodb_other(xid);
+CREATE INDEX aodb_other_attr_ix ON aodb_other(attribute);
+
+CREATE INDEX aodb_skill_xid_idx ON aodb_skill(xid, type);

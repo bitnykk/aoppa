@@ -1,0 +1,102 @@
+-- $Id: aunoorg-sql.schema 850 2008-02-12 19:05:23Z os $
+--
+
+-- drop the existing tables before starting
+DROP TABLE aodb;
+DROP TABLE aodb_nano;
+DROP TABLE aodb_ext;
+DROP TABLE aodb_other;
+DROP TABLE aodb_eff;
+DROP TABLE aodb_req;
+DROP TABLE aodb_skill;
+
+-- create new tables
+CREATE TABLE aodb (
+-- metadata
+	xid integer primary key,
+	hash integer not null,
+	metatype char(1) not null,
+	aoid integer not null,
+	patch integer not null,
+	current boolean not null default false,
+-- common properties
+	flags integer default 0,
+	props integer default 0,
+	ql integer,
+	type integer,
+	slot integer,
+	patchadded integer,
+-- text fields (common)
+	name text,
+	info text
+);
+
+CREATE TABLE aodb_ext (
+	xid integer primary key references aodb on update cascade on delete cascade,
+	icon integer,
+	defslot integer,
+	value integer,
+	tequip integer,
+	tattack integer,
+	trecharge integer,
+	dmin integer,
+	dmax integer,
+	dcrit integer,
+	dtype integer,
+	clip integer,
+	atype integer,
+-- for nanos
+	duration integer,
+-- both weapons and nanos
+	range integer
+);
+
+CREATE TABLE aodb_nano (
+	xid integer primary key references aodb on update cascade on delete cascade,
+	crystal integer,
+	ncu integer,
+	nanocost integer,
+	school integer,
+	strain integer
+);
+
+CREATE TABLE aodb_other (
+	xid integer references aodb on update cascade on delete cascade,
+	attribute integer,
+	value integer
+);
+
+CREATE TABLE aodb_eff (
+	xid integer not null references aodb on update cascade on delete cascade,
+	hook integer,
+	type integer,
+	reqid integer unique,
+	hits integer,
+	delay integer,
+	target integer,
+	value1 integer,
+	value2 integer,
+	value3 integer,
+	value4 integer,
+	value5 integer,
+	text text
+);
+
+CREATE TABLE aodb_req (
+	xid integer references aodb on update cascade on delete cascade,
+	reqid integer references aodb_eff (reqid) on update cascade on delete cascade,
+	reqnum integer,
+	hook integer,
+	attribute integer,
+	value integer,
+	type integer,
+	opmod integer,
+	CHECK ((xid is null or reqid is null) AND (xid is not null or reqid is not null))
+);
+
+CREATE TABLE aodb_skill (
+	xid integer not null references aodb on update cascade on delete cascade,
+	type integer not null,
+	attribute integer,
+	value integer
+);
