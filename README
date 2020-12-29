@@ -116,3 +116,15 @@ auno@auno.org or write in the forums at http://auno.org/
 
 Cheers,
 Auno
+
+Bitnykk 2020 Addition :
+
+You may need to install :
+- at least the build essentials package for the main aoppa processing
+- also postgresql (& its libpq-dev) for optionnal aunoorg-mk process
+
+Once ready, for aoppa just do : make
+It should compile aoppa and its .so & .o libraries
+
+For auno* tools : make -f aunoorg-mk
+It should compile several usable .so libraries
