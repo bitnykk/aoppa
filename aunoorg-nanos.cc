@@ -23,7 +23,8 @@
 
 #include <stdarg.h>
 #include <stdio.h>
-#include <libpq-fe.h>
+#include <string.h>
+#include </usr/include/postgresql/libpq-fe.h>
 
 #include <map>
 

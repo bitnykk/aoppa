@@ -21,11 +21,15 @@
  *
  */
 
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
 #include <stdarg.h>
 #include <stdio.h>
 #include <time.h>
 
-#include <libpq-fe.h>
+#include </usr/include/postgresql/libpq-fe.h>
 
 #include "aoppa.h"
 #include "misc.h"

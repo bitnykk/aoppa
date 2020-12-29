@@ -23,8 +23,12 @@
 
 // XXX: This is too slow to be used
 
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
 #include <cstdio>
-#include <libpq-fe.h>
+#include </usr/include/postgresql/libpq-fe.h>
 
 #include <list>
 

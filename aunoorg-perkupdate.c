@@ -25,7 +25,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <libpq-fe.h>
+#include </usr/include/postgresql/libpq-fe.h>
 
 static int
 exec_and_info(PGconn *, const char *);
