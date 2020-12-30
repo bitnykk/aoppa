@@ -72,7 +72,7 @@ static void
 auno_init(config_vars_t *cfg)
 {
   config_vars_t::const_iterator cfgval;
-  const char *dbname, *dbuser, *tmp;
+  const char *dbname, *dbuser, *userpass,*tmp;
 
   options = reqid = xid = 0;
 
@@ -84,16 +84,17 @@ auno_init(config_vars_t *cfg)
 
   dbname = aoppa_get_config(cfg, "dbname");
   dbuser = aoppa_get_config(cfg, "dbuser");
+  userpass = aoppa_get_config(cfg, "userpass");
 
   if((tmp = aoppa_get_config(cfg, "xid")))
   {
     xid = atoi(tmp);
   }
 
-  if(dbname && dbuser)
+  if(dbname && dbuser && userpass)
   {
     char connstr[0xff];
-    snprintf(connstr, 0xff, "dbname=%s user=%s", dbname, dbuser);
+    snprintf(connstr, 0xff, "dbname=%s user=%s password=%s", dbname, dbuser, userpass);
     dbconn = PQconnectdb(connstr);
     if(dbconn == NULL)
     {

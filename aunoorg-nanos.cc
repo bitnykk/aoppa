@@ -36,18 +36,19 @@ main(int argc, char **argv)
 {
   PGconn *dbconn;
   char buf[0x200];
-  const char *dbname, *dbuser;
+  const char *dbname, *dbuser, *userpass;
 
   if(argc != 3)
   {
-    fprintf(stderr, "Usage: %s <dbname> <dbuser>\n", argv[0]);
+    fprintf(stderr, "Usage: %s <dbname> <dbuser> <userpass>\n", argv[0]);
     exit(1);
   }
 
+  userpass = (const char *)(argv[3]);  
   dbuser = (const char *)(argv[2]);
   dbname = (const char *)(argv[1]);
 
-  snprintf(buf, sizeof buf, "dbname=%s user=%s", dbname, dbuser);
+  snprintf(buf, sizeof buf, "dbname=%s user=%s password=%s", dbname, dbuser, userpass);
   dbconn = PQconnectdb(buf);
   if(dbconn == NULL)
   {

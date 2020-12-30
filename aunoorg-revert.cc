@@ -37,22 +37,23 @@ main(int argc, char **argv)
 {
   PGconn *dbconn;
   char buf[0x200];
-  const char *dbname, *dbuser;
+  const char *dbname, *dbuser, *userpass;
   int patch;
   std::list<int> edelete, erevert;
   std::list<int>::iterator li;
 
   if(argc != 4)
   {
-    fprintf(stderr, "Usage: %s <dbuser> <dbname> <patch>\n", argv[0]);
+    fprintf(stderr, "Usage: %s <dbuser> <dbname> <userpass> <patch>\n", argv[0]);
     exit(1);
   }
 
   dbuser = (const char *)(argv[1]);
   dbname = (const char *)(argv[2]);
-  patch  = atoi(argv[3]);
+  userpass = (const char *)(argv[3]);
+  patch  = atoi(argv[4]);
 
-  snprintf(buf, sizeof buf, "dbname=%s user=%s", dbname, dbuser);
+  snprintf(buf, sizeof buf, "dbname=%s user=%s password=%s", dbname, dbuser, userpass);
   dbconn = PQconnectdb(buf);
   if(dbconn == NULL)
   {

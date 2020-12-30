@@ -124,7 +124,11 @@ You may need to install :
 - also postgresql (& its libpq-dev) for optionnal aunoorg-mk process
 
 Once ready, for aoppa just do : make
-It should compile aoppa and its .so & .o libraries
+It should compile aoppa and its .so & .o files
+Example of their use, e.g. to produce an XML file from AO DB extract by adbd :
+./aoppa -p input-gzip.so -p output-xml.so adbd-source.dat > aoppa-destination.xml
 
 For auno* tools : make -f aunoorg-mk
-It should compile several usable .so libraries
+It should compile several usable PG libraries
+Example of their use, e.g. to connect & update your local PG DB from AO DB extract by adbd :
+./aoppa -p input-gzip.so -p aunoorg-output.so -o dbname=mydbname,dbuser=mydbuser,userpass=myuserpass adbd-source.dat
