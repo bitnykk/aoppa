@@ -141,9 +141,9 @@ psql -U mypguser -d mypgdatabase -f aunoorg-sql.index
 And then, once .dat was imported into DB, you may want to dump all from PG :
 pg_dump mypgdatabase > dumpresult.pgsql
 Or may be dump a specific table only, e.g. for sql insert :
-pg_dump --column-inserts --data-only --table public.aodb mypgdatabase > AOFiles/aodb-18085300ep1.sql
+pg_dump --column-inserts --data-only --table public.aodb mypgdatabase > tableinsert.sql
 Or even possibly some specific fields from one or more table(s) to csv, e.g. :
-psql -hlocalhost -dmypgdatabase -Umypguser -c "copy(SELECT public.aodb.aoid, public.aodb.ql, public.aodb_ext.icon, public.aodb.name FROM public.aodb INNER JOIN public.aodb_ext ON public.aodb.xid = public.aodb_ext.xid WHERE public.aodb.ql > 0 AND public.aodb_ext.icon > 0) to stdout DELIMITER ',' CSV HEADER" > AOFiles/aodb-18085300ep1.csv
+psql -hlocalhost -dmypgdatabase -Umypguser -c "copy(SELECT public.aodb.aoid, public.aodb.ql, public.aodb_ext.icon, public.aodb.name FROM public.aodb INNER JOIN public.aodb_ext ON public.aodb.xid = public.aodb_ext.xid WHERE public.aodb.ql > 0 AND public.aodb_ext.icon > 0) to stdout DELIMITER ';'" > mypgexport.csv
 And if ever needed, you may want to drop & recreate the DB as earlier :
 su - postgres
 dropdb mypgdatabase
