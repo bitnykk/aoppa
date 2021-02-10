@@ -144,6 +144,7 @@ Or may be dump a specific table only, e.g. for sql insert :
 pg_dump --column-inserts --data-only --table public.aodb mypgdatabase > tableinsert.sql
 Or even possibly some specific fields from one or more table(s) to csv, e.g. :
 psql -hlocalhost -dmypgdatabase -Umypguser -c "copy(SELECT public.aodb.aoid, public.aodb.ql, public.aodb_ext.icon, public.aodb.name FROM public.aodb INNER JOIN public.aodb_ext ON public.aodb.xid = public.aodb_ext.xid WHERE public.aodb.ql > 0 AND public.aodb_ext.icon > 0) to stdout DELIMITER ';'" > mypgexport.csv
+This could by the way be optimized with Budabot ItemsExtractor filter (delete_list.txt) by Tyrence at https://github.com/Budabot/ItemsExtractor/blob/master/src/main/resources/
 And if ever needed, you may want to drop & recreate the DB as earlier :
 su - postgres
 dropdb mypgdatabase
