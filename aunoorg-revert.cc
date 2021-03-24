@@ -42,7 +42,7 @@ main(int argc, char **argv)
   std::list<int> edelete, erevert;
   std::list<int>::iterator li;
 
-  if(argc != 4)
+  if(argc != 5)
   {
     fprintf(stderr, "Usage: %s <dbuser> <dbname> <userpass> <patch>\n", argv[0]);
     exit(1);

@@ -37,7 +37,7 @@ main(int argc, char **argv)
   char buf[0x200];
   const char *dbname, *dbuser, *userpass;
 
-  if(argc != 3)
+  if(argc != 4)
   {
     fprintf(stderr, "Usage: %s <dbname> <dbuser> <userpass>\n", argv[0]);
     exit(1);
